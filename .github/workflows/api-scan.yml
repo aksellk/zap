@@ -20,4 +20,5 @@ jobs:
           target: 'http://localhost:3000/api-docs/'
           cmd_options: '-a'
       - name: Stop and remove Docker container
+        if: always()
         run: docker stop juice-shop
