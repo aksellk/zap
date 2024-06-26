@@ -1,0 +1,8 @@
+name: API scan
+on: workflow_dispatch
+jobs:
+  api_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run zap API scan
+        run: echo "hello world"
