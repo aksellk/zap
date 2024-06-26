@@ -16,7 +16,4 @@ jobs:
         run: |
           curl http://localhost:3000
       - name: Stop and remove Docker container
-        run: |
-          echo $(docker ps -a)
-          docker stop juice-shop
-          docker rm juice-shop
+        run: docker stop juice-shop
