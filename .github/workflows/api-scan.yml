@@ -4,5 +4,18 @@ jobs:
   api_scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Run zap API scan
-        run: echo "hello world"
+      - name: Run Docker container
+        run: docker run --detach --rm --name juice-shop --publish 127.0.0.1:3000:3000 docker.io/bkimminich/juice-shop:v17.0.0
+      - name: Wait for server to be ready
+        run: |
+          while ! curl --silent http://localhost:3000 > /dev/null; do
+            echo "Waiting for server..."
+            sleep 5
+          done
+      - name: Verify server is running
+        run: |
+          curl http://localhost:3000
+      - name: Stop and remove Docker container
+        run: |
+          docker stop juice-shop
+          docker rm juice-shop
